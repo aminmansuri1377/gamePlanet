@@ -1,6 +1,5 @@
-import React from "react"                 
-                                    import { useTranslation } from "react-i18next";;
-import Divider from "./divider";
+import React from "react";
+import Divider from "./Divider";
 
 function OrderTicketDetail({ value, text }) {
   return (
