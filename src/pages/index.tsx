@@ -15,6 +15,7 @@ const WelcomePage = () => {
   const handleSinglePage = (productName: string) => {
     router.push({ pathname: "/singlePage", query: { product: productName } });
   };
+  console.log("DATABASE_URL:", process.env.NEXT_PUBLIC_API_URL);
 
   if (isLoading) return <Loading />;
   if (error) return <p>Error: {error.message}</p>;
