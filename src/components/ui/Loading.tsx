@@ -1,5 +1,5 @@
-import { memo, FC } from "react"                                    
-                 import { useTranslation } from "react-i18next";;
+import { memo, FC } from "react";
+import { useTranslation } from "react-i18next";
 import * as handLoading from "../../../public/lottie/handLoading.json";
 import Lottie from "react-lottie";
 

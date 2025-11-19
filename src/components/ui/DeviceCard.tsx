@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
-function DeviceCard({ product, info }) {
+function DeviceCard({ product, info, isError }) {
   const ModelPs5 = () => {
     const fbxRef = useRef();
 
@@ -52,6 +52,30 @@ function DeviceCard({ product, info }) {
     }, []);
     return <group ref={fbxRef} />;
   };
+  if (isError) {
+    return (
+      <div>
+        <Box>
+          <Canvas style={{ height: "50vh" }}>
+            <ambientLight intensity={1} />
+            <directionalLight position={[0, 10, 5]} intensity={1} />
+            <ModelPs5 />
+            <OrbitControls enableZoom={false} />
+          </Canvas>
+
+          <Canvas style={{ height: "50vh" }} className="">
+            <ambientLight intensity={1} />
+            <directionalLight position={[20, 10, 50]} intensity={5} />
+            <ModelXbox />
+            <OrbitControls enableZoom={false} />
+          </Canvas>
+          <h1 className="font-PeydaBold text-center text-lg text-red-500">
+            no data
+          </h1>
+        </Box>
+      </div>
+    );
+  }
   return (
     <div>
       <Box>
