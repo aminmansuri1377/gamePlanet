@@ -9,7 +9,7 @@ import useAuthRedirect from "@/components/hooks/useAuthRedirect";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiTwotoneDelete } from "react-icons/ai";
 
-const products = () => {
+const Products = () => {
   const router = useRouter();
   const handleBack = () => {
     router.back();
@@ -68,4 +68,4 @@ const products = () => {
   );
 };
 
-export default products;
+export default Products;

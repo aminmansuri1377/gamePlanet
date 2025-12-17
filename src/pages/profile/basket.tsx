@@ -10,7 +10,7 @@ import Loading from "@/components/ui/Loading";
 import { useTranslation } from "react-i18next";
 import { FcBinoculars } from "react-icons/fc";
 
-function basket() {
+function Basket() {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const userId = session && +session?.user?.id;
@@ -64,4 +64,4 @@ function basket() {
   );
 }
 
-export default basket;
+export default Basket;

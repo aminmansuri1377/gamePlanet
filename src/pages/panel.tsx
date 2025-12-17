@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import Cookies from "js-cookie";
 
-function panel() {
+function Panel() {
   const router = useRouter();
 
   const handleSuccess = () => {
@@ -17,4 +17,4 @@ function panel() {
   );
 }
 
-export default panel;
+export default Panel;

@@ -14,7 +14,7 @@ import { sessionAtom } from "../../../store/atoms/sessionAtom";
 import { useRecoilValue } from "recoil";
 import Button from "@/components/Button";
 import Loading from "@/components/ui/Loading";
-function profile() {
+function Profile() {
   const { t } = useTranslation();
   const { data: session, status } = useSession();
   const setSession = useSetRecoilState(sessionAtom);
@@ -98,4 +98,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default Profile;

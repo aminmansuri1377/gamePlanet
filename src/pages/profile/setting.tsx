@@ -6,13 +6,13 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineEdit } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { LuWallet2 } from "react-icons/lu";
+import { LuWallet } from "react-icons/lu";
 import { HiOutlineLogout } from "react-icons/hi";
 import { signOut } from "next-auth/react";
 import CustomModal from "@/components/ui/CustomModal";
 import EditProfile from "@/components/EditProfile";
 
-function setting() {
+function Setting() {
   const router = useRouter();
   const { t } = useTranslation();
   const handleBack = () => {
@@ -65,7 +65,7 @@ function setting() {
               <h1 className=" font-PeydaBold text-white mx-3">
                 {t("rent.wallet")}
               </h1>
-              <LuWallet2 size={30} />
+              <LuWallet size={30} />
             </div>
           </Box>
           <div onClick={handleOut}>
@@ -87,4 +87,4 @@ function setting() {
   );
 }
 
-export default setting;
+export default Setting;

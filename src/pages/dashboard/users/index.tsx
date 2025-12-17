@@ -12,7 +12,7 @@ import { LuArrowBigLeftDash } from "react-icons/lu";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useRouter } from "next/router";
 
-function index() {
+function Index() {
   const router = useRouter();
   const handleBack = () => {
     router.back();
@@ -73,4 +73,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
