@@ -29,6 +29,7 @@ function DeviceCard({ product, info, isError }) {
 
     return <group ref={fbxRef} />;
   };
+
   const ModelXbox = () => {
     const fbxRef = useRef();
 
@@ -52,23 +53,65 @@ function DeviceCard({ product, info, isError }) {
     }, []);
     return <group ref={fbxRef} />;
   };
+
+  // Show both models when there are no products
+  if (!product) {
+    return (
+      <div>
+        <Box>
+          <div className="flex flex-col">
+            {/* PS5 Model */}
+            <div style={{ height: "50vh" }}>
+              <Canvas>
+                <ambientLight intensity={1} />
+                <directionalLight position={[0, 10, 5]} intensity={1} />
+                <ModelPs5 />
+                <OrbitControls enableZoom={false} />
+              </Canvas>
+            </div>
+
+            {/* Xbox Model */}
+            <div style={{ height: "50vh" }}>
+              <Canvas>
+                <ambientLight intensity={1} />
+                <directionalLight position={[20, 10, 50]} intensity={5} />
+                <ModelXbox />
+                <OrbitControls enableZoom={false} />
+              </Canvas>
+            </div>
+          </div>
+
+          <h1 className="font-PeydaBold text-center text-lg">
+            {info || "No products available"}
+          </h1>
+        </Box>
+      </div>
+    );
+  }
+
   if (isError) {
     return (
       <div>
         <Box>
-          <Canvas style={{ height: "50vh" }}>
-            <ambientLight intensity={1} />
-            <directionalLight position={[0, 10, 5]} intensity={1} />
-            <ModelPs5 />
-            <OrbitControls enableZoom={false} />
-          </Canvas>
+          <div className="flex flex-col">
+            <div style={{ height: "25vh" }}>
+              <Canvas>
+                <ambientLight intensity={1} />
+                <directionalLight position={[0, 10, 5]} intensity={1} />
+                <ModelPs5 />
+                <OrbitControls enableZoom={false} />
+              </Canvas>
+            </div>
 
-          <Canvas style={{ height: "50vh" }} className="">
-            <ambientLight intensity={1} />
-            <directionalLight position={[20, 10, 50]} intensity={5} />
-            <ModelXbox />
-            <OrbitControls enableZoom={false} />
-          </Canvas>
+            <div style={{ height: "25vh" }}>
+              <Canvas>
+                <ambientLight intensity={1} />
+                <directionalLight position={[20, 10, 50]} intensity={5} />
+                <ModelXbox />
+                <OrbitControls enableZoom={false} />
+              </Canvas>
+            </div>
+          </div>
           <h1 className="font-PeydaBold text-center text-lg text-red-500">
             no data
           </h1>
@@ -76,19 +119,19 @@ function DeviceCard({ product, info, isError }) {
       </div>
     );
   }
+
   return (
     <div>
       <Box>
         {product && product.toLowerCase().includes("ps5") ? (
           <Canvas style={{ height: "50vh" }}>
             <ambientLight intensity={1} />
-
             <directionalLight position={[0, 10, 5]} intensity={1} />
             <ModelPs5 />
             <OrbitControls enableZoom={false} />
           </Canvas>
         ) : product && product.toLowerCase().includes("xbox") ? (
-          <Canvas style={{ height: "50vh" }} className="">
+          <Canvas style={{ height: "50vh" }}>
             <ambientLight intensity={1} />
             <directionalLight position={[20, 10, 50]} intensity={5} />
             <ModelXbox />

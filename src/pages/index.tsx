@@ -18,12 +18,12 @@ const WelcomePage = () => {
   } = trpc.main.getProducts.useQuery(undefined, {
     retry: false,
   });
+
   const handleSinglePage = (productName: string) => {
+    if (!productName) return; // Don't navigate if no product
     router.push({ pathname: "/singlePage", query: { product: productName } });
   };
-  // console.log("DATABASE_URL:", process.env.NEXT_PUBLIC_API_URL);
 
-  // if (isLoading) return <Loading />;
   if (error) {
     if (error.data?.httpStatus === 500) {
       return (
@@ -34,20 +34,38 @@ const WelcomePage = () => {
             className=" my-10 scale-110"
             loading="lazy"
           />
-
           <DeviceCard product="" info="no data" isError />
         </div>
       );
     }
-
     return <p>Error: {error.message}</p>;
   }
+
+  // Show models when there are no products
+  if (!isLoading && (!products || products.length === 0)) {
+    return (
+      <div>
+        <h1 className=" font-PeydaBlack text-center [word-spacing:5px] my-5">
+          {t("rent.ps5AndXboxRental")}{" "}
+        </h1>
+        <Image
+          src={ast}
+          alt="genc"
+          className=" my-10 scale-110"
+          loading="lazy"
+        />
+        <div onClick={() => handleSinglePage("")}>
+          <DeviceCard product="" info="No products available" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1 className=" font-PeydaBlack text-center [word-spacing:5px] my-5">
         {t("rent.ps5AndXboxRental")}{" "}
       </h1>
-      {/* <Image src={genc} alt="genc" className=" my-20" /> */}
       <Image src={ast} alt="genc" className=" my-10 scale-110" loading="lazy" />
       <div>
         {products?.map((product) => (
@@ -59,5 +77,4 @@ const WelcomePage = () => {
     </div>
   );
 };
-
 export default WelcomePage;
