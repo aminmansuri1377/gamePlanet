@@ -11,55 +11,58 @@ import DeviceCard from "@/components/ui/DeviceCard";
 const WelcomePage = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = trpc.main.getProducts.useQuery(undefined, {
-    retry: false,
-  });
-
+  // const {
+  //   data: products,
+  //   isLoading,
+  //   error,
+  // } = trpc.main.getProducts.useQuery(undefined, {
+  //   retry: false,
+  // });
+  const products = [
+    { id: 1, name: "PS5", info: "PlayStation 5" },
+    { id: 2, name: "Xbox Series X", info: "Xbox Series X" },
+  ]; // Mock data for demonstration
   const handleSinglePage = (productName: string) => {
     if (!productName) return; // Don't navigate if no product
     router.push({ pathname: "/singlePage", query: { product: productName } });
   };
 
-  if (error) {
-    if (error.data?.httpStatus === 500) {
-      return (
-        <div>
-          <Image
-            src={ast}
-            alt="genc"
-            className=" my-10 scale-110"
-            loading="lazy"
-          />
-          <DeviceCard product="" info="no data" isError />
-        </div>
-      );
-    }
-    return <p>Error: {error.message}</p>;
-  }
+  // if (error) {
+  //   if (error.data?.httpStatus === 500) {
+  //     return (
+  //       <div>
+  //         <Image
+  //           src={ast}
+  //           alt="genc"
+  //           className=" my-10 scale-110"
+  //           loading="lazy"
+  //         />
+  //         <DeviceCard product="" info="no data" isError />
+  //       </div>
+  //     );
+  //   }
+  //   return <p>Error: {error.message}</p>;
+  // }
 
   // Show models when there are no products
-  if (!isLoading && (!products || products.length === 0)) {
-    return (
-      <div>
-        <h1 className=" font-PeydaBlack text-center [word-spacing:5px] my-5">
-          {t("rent.ps5AndXboxRental")}{" "}
-        </h1>
-        <Image
-          src={ast}
-          alt="genc"
-          className=" my-10 scale-110"
-          loading="lazy"
-        />
-        <div onClick={() => handleSinglePage("")}>
-          <DeviceCard product="" info="No products available" />
-        </div>
-      </div>
-    );
-  }
+  // if (!isLoading && (!products || products.length === 0)) {
+  //   return (
+  //     <div>
+  //       <h1 className=" font-PeydaBlack text-center [word-spacing:5px] my-5">
+  //         {t("rent.ps5AndXboxRental")}{" "}
+  //       </h1>
+  //       <Image
+  //         src={ast}
+  //         alt="genc"
+  //         className=" my-10 scale-110"
+  //         loading="lazy"
+  //       />
+  //       <div onClick={() => handleSinglePage("")}>
+  //         <DeviceCard product="" info="No products available" />
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
